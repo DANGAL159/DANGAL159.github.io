@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EtherWallet Frontend</title>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <style>
+        /* Estilos globales */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            color: #4CAF50;
+            font-size: 3em;
+            margin-top: 50px;
+        }
+        
+        p {
+            color: #555;
+            font-size: 1.2em;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Botones y entradas */
+        button, input {
+            border: none;
+            border-radius: 5px;
+            padding: 12px 20px;
+            margin: 10px 0;
+            font-size: 1.1em;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+
+        input {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+
+        input:focus {
+            outline: none;
+            background-color: #e0e0e0;
+        }
+
+        /* Estilos para el balance y la cuenta */
+        #account, #balance {
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        #output {
+            margin-top: 30px;
+            font-size: 1.2em;
+            color: #e53935;
+        }
+
+        /* Estilo de la sección de botones */
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        /* Estilo para el contenedor de la entrada y botones */
+        .input-section {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        /* Animación */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container fade-in">
+        <h1>EtherWallet</h1>
+        <div>
+            <button onclick="connectWallet()">Conectar Wallet</button>
+            <p id="account">Cuenta: No conectada</p>
+        </div>
+
+        <div>
+            <button onclick="getBalance()">Consultar Balance</button>
+            <p id="balance">Balance del contrato: -</p>
+        </div>
+
+        <div class="input-section">
+            <input type="text" id="amount" placeholder="Cantidad en ETH">
+            <div class="action-buttons">
+                <button onclick="deposit()">Depositar</button>
+                <button onclick="withdraw()">Retirar</button>
+            </div>
+        </div>
+
+        <div id="output"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
