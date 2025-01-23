@@ -153,3 +153,20 @@ async function withdraw() {
     }
 }
 
+// Consultar balance de la cuenta conectada
+async function getUserBalance() {
+    try {
+        if (!signer) {
+            document.getElementById("userBalance").textContent = "Conecta tu wallet primero.";
+            return;
+        }
+        const account = await signer.getAddress();
+        const balance = await provider.getBalance(account);
+        document.getElementById("userBalance").textContent = `Balance del usuario: ${ethers.utils.formatEther(balance)} ETH`;
+    } catch (error) {
+        console.error("Error al consultar el balance del usuario:", error);
+        document.getElementById("userBalance").textContent = "Error al consultar el balance.";
+    }
+}
+
+
